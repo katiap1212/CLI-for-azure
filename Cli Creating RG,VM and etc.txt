@@ -1,9 +1,9 @@
-יצירת קבוצת משאבים
+creating rg:
 az group create --name Testaz2121 --location westus 
 az group list 
 az group show --name Testaz2121
 
-יצירת רשת ותת רשת
+creating network+subnet:
 az network vnet create --address-prefixes 10.0.0.0/16 --name Vnet1 --resource-group Testaz2121 --subnet-name MyAseSubnet --subnet-prefixes 10.0.0.0/24
 az network vnet create --address-prefixes 10.1.0.0/16 --name Vnet2 --resource-group Testaz2121 --subnet-name Subnet2 --subnet-prefixes 10.1.0.0/24
 
@@ -24,14 +24,7 @@ az vm create --resource-group Testaz2121 --name vm2 --image Ubuntu2204 --public-
 az network vnet peering create -g Testaz2121 -n Vnet1ToVnet2 --vnet-name Vnet1 --remote-vnet Vnet2 --allow-vnet-access
 az network vnet peering create -g Testaz2121 -n Vnet2ToVnet1 --vnet-name Vnet2 --remote-vnet Vnet1 --allow-vnet-access
 
-ssh: 
 
-az sshkey create --mysshkey
-                 --resource-group testaz2121
-                 [--encryption-type {Ed25519, RSA}]
-                 [--location eastus]
-                 [--public-key]
-                 [--tags]
 
 az group --resource-group Testaz2121 --image Ubuntu2204 --generate-ssh-keys
 --resource-group Testaz2121 --name vm2 --image Ubuntu2204 --admin-username adminaz --admin-password qwerty654321! --ssh-key-values mysshkey.pub
